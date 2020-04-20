@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+           margin: 0; 
+           background-color: rgb(234, 236, 241);
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        img {
+            max-width: 100%;
+        }
+        a:hover {
+            color: rgb(164, 164, 224);
+        }
+        .header {
+             height: 70px;
+             background-color: rgb(131, 118, 207);
+        }
+        .section {
+            padding: 0 66px;
+        }
+        .section-header {
+            margin: 50px 0;
+            font-size: 18px;
+            font-weight: lighter;
+            display: flex;
+            justify-content: space-between;
+        }
+        .section-header-side {
+            width: 33%;
+        }
+        .section-cards {
+            display: flex;
+        }
+        .section-cards .card {
+            flex: 1;
+        }
+        .section-cards .card  {
+            background-color: rgb(255, 255, 255);
+        }
+        .section-cards .card +.card {
+            margin-left: 20px;
+        }
+        .card-view {
+            height: 300px;
+            background-color: #cfcfcf;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .card-view:hover .card-view-shadow {
+            opacity: 1;
+        }
+        .card-view-shadow {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background-color: rgba(0, 0, 0, .5);
+            position: absolute;
+            /* 显示鼠标样式 */
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            transition: 300ms;
+        }.card-view-shadow button {
+            height: 30px;
+            padding: 0px 16px;
+            border-radius: 15px;
+            color: #cfcfcf;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .card-view-shadow button + button {
+            margin-left: 10px;
+        }
+        .card-view-shadow button:hover {
+            opacity: .8;
+        }
+        .shadow-body button {
+            height: 50px;
+            border-radius: 25px;
+            color: #333333;
+            background-color: #ffffff;
+        }
+        .shadow-header,
+        .shadow-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        .shadow-body {
+            display: flex;
+            justify-content: center;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            margin: 0px;
+            font-size: 14px;
+            font-weight: 500;
+            color: mediumpurple;
+        }
+        .card-footer {
+            padding: 10px 20px;
+        }
+        .card-info {
+            overflow: hidden;
+        }
+        .card-info-left {
+            float: left;
+        }
+        .card-info-right {
+            float: right;
+        }
+        .link {
+            color: rgb(214, 27, 143);
+        }
+        /* -------------------------- banner -------------------------- */
+        .banner {
+            height: 30vw;
+            color: white;
+            background-color:wheat;
+            background-image: url(./images/banner.jpg);
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            padding: 66px;
+        }
+        .banner-header,
+        .banner-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .banner-header .header-right,
+        .banner-body .body-circle {
+            list-style: none;
+            display: flex;
+        }
+        .banner-header .header-right li {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner-body {
+            text-align: center;
+        }
+        .banner-body .body-circle {
+            display: flex;
+            justify-content: center;
+        }
+        .banner-body .body-circle .circle {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner-body .body-circle li + li {
+            margin-left: 20px;
+        }
+        /* .banner-body .body-circle svg {
+            transform: rotate(-90deg);
+        }
+        .banner-body .body-circle svg circle {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 3;
+        }
+        .banner-body .body-circle svg circle {
+            stroke: #df6c4f;
+        }
+        .banner-body .body-circle svg circle:nth-child(1) {
+            stroke-opacity: 0.3;
+        }
+        .banner-body .body-circle svg circle:nth-child(2) {
+            stroke-dasharray: 180;
+        } */
+        .banner-footer .footer-left .button-primary {
+            height: 36px;
+            border-radius: 18px;
+            color: #fff;
+            border-color: #49c5b6;
+            background-color: #49c5b6;
+            padding: 0px 23px;
+            font-size: 14px;
+        }
+        .banner-footer .footer-left .button-primary:hover {
+            background-color: transparent ;
+            color: #49c5b6;
+        }
+        .banner-footer .footer-left .button {
+            height: 36px;
+            border-radius: 18px;
+            color: #ffffff;
+            border-color: #ffffff;
+            background-color: transparent;
+            padding: 0px 23px;
+            font-size: 14px;
+        }
+        .banner-footer .footer-left .button:hover {
+            color: #49c5b6;
+            border-color: #49c5b6;
+        }
+        /* -------------------------- banner -------------------------- */
+        .header {
+            height: 70px;
+            background-color:#fff;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+        }
+             width: 100px;
+            height: 100%;
+            border-right: 1px solid #dddddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-title {
+            top: 50%;
+            left: 50%;
+            margin: 0;
+            position: absolute;
+            /* 这是自身开始点为起点，将中心点 调整至“中间点” */
+            transform: translate(-50%,-50%);
+        } 
+        .header-login {
+            margin-right: 20px;
+        }
+        }.header-search-but button [
+            margin: 20PX;
+        ]
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <header class="header-menu">
+                <span>menu</span>
+            </header>
+        </div>
+        <button class="header-search-but">查询</button>
+        <h1 class="header-title">标题</h1>
+        <div class="header-right">
+            <span>ARE YOU A MEMBER?</span>
+            <a href="#">Register</a>
+            <span>/</span>
+            <a href="#">Login</a>
+        </div>
+        <button class="header-submit">UBMIT YOUR SITE</button>
+    </header>
+    <main>
+        <div class="banner">
+            <header class="banner-header">
+                <div class="header-left">Site of the Day April 08, 2020</div>
+                <ul class="header-right">
+                    <li>❤️</li>
+                    <li>❤️</li>
+                    <li>❤️</li>
+                    <li>❤️</li>
+                    <li>❤️</li>
+                    <li>❤️</li>
+                </ul>
+            </header> 
+            <main class="banner-body">
+               <h1 class="body-title">MSTQ</h1>
+               <div class="body-info">BY<a href="#"> NUMBERED</a> FROM NETHERLANDS WITH 7.58</div>
+               <ul class="body-circle">
+                   <li>
+                       <!-- <svg width="84" height="84"  >
+                            <circle r="38" cy="41" cx="41"></circle>
+                            <circle r="38" cy="41" cx="41" stroke-linejoin="round" stroke-linecap="round" class="circle-progress" style="animation: 900ms ease 0s 1 normal forwards running donut-show-0;"></circle>
+                        </svg> -->
+                       <div class="circle">8.3</div>
+                       <p>design</p>
+                   </li>
+                   <li>
+                       <div class="circle">8.3</div>
+                       <p>design</p>
+                   </li>
+                   <li>
+                       <div class="circle">8.3</div>
+                       <p>design</p>
+                   </li>
+                   <li>
+                       <div class="circle">8.3</div>
+                       <p>design</p>
+                   </li>
+                   <li>
+                       <div class="circle">8.3</div>
+                       <p>design</p>
+                   </li>
+               </ul>
+            </main> 
+            <footer class="banner-footer">
+                <div class="footer-left">
+                    <button class="button-primary">visit Site</button>
+                    <button class="button">collect</button>
+                </div>
+                <div class="footer-right">
+                    <div class="friend-link"></div>
+                </div>
+            </footer>
+        </div>
+        <section class="winners section">
+            <h2 class="section-header">
+                <span><strong>Sites of the day </strong> Previous Winners</span>
+                <span class="section-header-side">Sites of the day Previous Winners</span>
+            </h2>
+            <main class="section-cards">
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a>
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a> 
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a> 
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+            </main>
+            
+        </section>
+        <section class="winners section">
+            <h2 class="section-header">
+                <span><strong>Sites of the day </strong> Previous Winners</span>
+                <span class="section-header-side">Sites of the day Previous Winners</span>
+            </h2>
+            <main class="section-cards">
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a> 
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a> 
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a> 
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+            </main>
+            
+        </section>
+        <section class="winners section">
+            <h2 class="section-header">
+                <span><strong>Sites of the day </strong> Previous Winners</span>
+                <span class="section-header-side">Sites of the day Previous Winners</span>
+            </h2>
+            <main class="section-cards">
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a> 
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a> 
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+                <div class="card">
+                    <div class="card-view">
+                        <img src="./images/bg3.jpg" alt="">
+                        <div class="card-view-shadow">
+                                <header class="shadow-header">
+                                    <button>❤️喜欢</button>
+                                    <button>🌟收藏</button>
+                                </header>
+                                <main class="shadow-body">
+                                    <button class="shadow-primary">立即查看</button>
+                                </main>
+                                <footer class="shadow-footer">
+                                    <button>转发</button>
+                                </footer>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title"> 
+                           <a href="#">卡片1标题</a> 
+                        </h3>
+                        <div class="card-info">
+                            <!-- span指代行内元素，div是行元素 -->
+                            <span class="card-info-left">这里是描述信息 <a class="link" href="#">video</a></span>
+                            <time class="card-info-right">2020-12-31</time>
+                        </div>
+                    </div>
+                    <div class="card-footer">卡片底部信息</div>
+                </div>
+            </main>  
+        </section>
+    </main>
+    <footer>页尾</footer>
+</body>
+</html>
